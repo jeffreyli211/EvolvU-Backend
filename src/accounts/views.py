@@ -5,19 +5,20 @@ from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 from .models import *
+from .forms import CreateUserForm
 
 #homepage view
 def home_view(request, *args, **kwargs): #args, keywordargs
 	return render(request, "accounts/home_view.html", {})
 
 def registerUserPage(request):
-    form = UserCreationForm()
+    form = CreateUserForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        print("here")
+        form = CreateUserForm(request.POST)
+        #print("here")
         if form.is_valid():
-            print("valid")
+            #print("valid")
             form.save()
                 
     context = {'form':form}
