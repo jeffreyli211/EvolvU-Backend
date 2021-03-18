@@ -21,10 +21,13 @@ from accounts import views
 import accounts
 from accounts.views import registerUserPage, home_view, UserViewSet
 
+import coaches
+from coaches.api import urls, views, serializers
+
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
 #router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+#router.register(r'groups', views.GroupViewSet)
 
 
 urlpatterns = [
@@ -33,4 +36,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #path('registerUser/', registerUserPage, name='register'),
+
+    # REST FRAMEWORK URLS
+    path('api/coaches/', include(coaches.api.urls, namespace='coaches_api')),
 ]
