@@ -32,7 +32,7 @@ def api_update_coach_view(request, slug):
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == "PUT":
-        serializer = CoachSerializer(coach_profile)
+        serializer = CoachSerializer(coach_profile, data=request.data)
         data = {}
         if serializer.is_valid():
             serializer.save()
@@ -48,7 +48,7 @@ def api_delete_coach_view(request, slug):
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == "DELETE":
-        operation = coach_profile.DELETE()
+        operation = coach_profile.delete()
         data = {}
         if operation == True:
             data["Success"] = "Successfully deleted specified coach."

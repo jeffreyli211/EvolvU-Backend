@@ -41,6 +41,6 @@ class UserProfile(models.Model):
 
 def pre_save_user_receiver(sender, instance, *args, **kwargs):
     # TODO: RANDOM.RANDINT IS A PLACEHOLDER, REPLACE WITH COACH'S ID VALUE LATER
-    instance.slug = slugify(instance.user.first_name + '-' + instance.user.last_name + '-' + str(random.randint(0, 100000000)))
+    instance.slug = slugify(instance.user.username + '-' + str(random.randint(0, 100000000)))
 
 pre_save.connect(pre_save_user_receiver, sender=UserProfile)

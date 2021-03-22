@@ -5,8 +5,7 @@ from coaches.models import Coach
 class CoachSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coach
-        fields = ['first_name', 'last_name',
-                'slug',
+        fields = ['slug',
                 'focus_health',
                 'focus_wellness',
                 'focus_health_wellness',
