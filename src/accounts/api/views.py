@@ -7,6 +7,7 @@ from accounts.api.serializers import RegistrationSerializer
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 
 
 # Create your views here
@@ -24,6 +25,8 @@ def registration_view(request):
         data['username'] = account.username
         data['first_name'] = account.first_name
         data['last_name'] = account.last_name
+        token = Token.objects.get(user=account).key
+        data['token'] = token
     else:
         data = serializer.errors
     return Response(data)
